@@ -1,7 +1,6 @@
 var fs = require('fs')
-
-var presetName = '',
-    presetOptions
+  , presetName = ''
+  , presetOptions = {}
 
 function preset (name) {
   presetName = name

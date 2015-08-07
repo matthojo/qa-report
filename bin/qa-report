@@ -1,8 +1,8 @@
 #! /usr/bin/env node
 
-var optimist = require('optimist'),
-    qaReport = require('../'),
-    fs = require('fs')
+var optimist = require('optimist')
+  , qaReport = require('../')
+  , fs = require('fs')
 
 var argv = optimist
   .alias('h', 'help')

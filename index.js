@@ -1,21 +1,21 @@
-var inquirer = require('inquirer'),
-    fs = require('fs'),
-    async = require('async'),
-    chalk = require('chalk'),
-    find = require('lodash.find'),
-    result = require('lodash.result')
-    preset = require('./src/preset')
+var inquirer = require('inquirer')
+  , fs = require('fs')
+  , async = require('async')
+  , chalk = require('chalk')
+  , find = require('lodash.find')
+  , result = require('lodash.result')
+  , preset = require('./src/preset')
 
-function qaReport(opts, callback) {
+function qaReport (opts, callback) {
   opts = opts || {}
   callback = callback || noop
 
-  var presets = '',
-      md = '# QA'
+  var presets = ''
+    , md = '# QA'
 
   async.series(
     [
-      function(done){
+      function (done) {
         // LOAD PRESET
         if (opts.preset) {
           presets = preset(opts.preset)
@@ -23,12 +23,12 @@ function qaReport(opts, callback) {
           presets = preset('default')
         }
         done()
-      },
-      function(done){
+      }
+    , function (done) {
         // GENERATE MD
-        var answers = presets.answers,
-            questionSets = presets.questionSets,
-            availableAnswers = []
+        var answers = presets.answers
+          , questionSets = presets.questionSets
+          , availableAnswers = []
 
         for (var answer in answers) {
           if (answers.hasOwnProperty(answer)) {
@@ -41,63 +41,59 @@ function qaReport(opts, callback) {
           // Set title in markdown
           md += '\n\n## ' + value.title + '\n\n'
           // Set questions
-          var questionSet = value.questions,
-              questionSetLength = questionSet.length
-
-          var inquirerQuestions = []
-          for(var i = 0; i < questionSetLength; i++) {
+          var questionSet = value.questions
+        , questionSetLength = questionSet.length
+        , inquirerQuestions = []
+          for (var i = 0; i < questionSetLength; i++) {
             var q = questionSet[i]
             inquirerQuestions.push({
-              type: 'list',
-              name: '' + i,
-              message: q,
-              choices: availableAnswers,
+              type: 'list'
+            , name: '' + i
+            , message: q
+            , choices: availableAnswers
             })
           }
           console.log(chalk.magenta('\n' + value.title + '\n' + '==========='))
           inquirer.prompt(
-            inquirerQuestions,
-            function( completed ) {
+            inquirerQuestions
+              , function ( completed ) {
               // console.log('Answers: ', JSON.stringify(completed, null, "  ") );
               for (var item in completed) {
-                var answerValue = find(answers, {title: completed[item]})
+                var answerValue = find(answers, { title: completed[item] })
                 md += answerValue.value + ' ' + questionSet[parseInt(item)] + '\n'
               }
               next()
             }
           )
-        }, function(){
+        }
+      , function () {
           done()
         })
-      },
-      function(done) {
+      }
+    , function (done) {
         console.log(chalk.magenta('\nAdditional Notes\n' + '==========='))
         md += '\n\n## Additional Notes\n\n'
         inquirer.prompt([
             {
-              type: 'input',
-              name: 'notes',
-              message: 'Additional Notes:'
+              type: 'input'
+            , name: 'notes'
+            , message: 'Additional Notes:'
             }
-          ],
-          function( completed ) {
+          ]
+          ,   function ( completed ) {
             // console.log('Answers: ', JSON.stringify(completed, null, "  ") );
-            md += completed['notes']
+            md += completed.notes
             done()
           }
         )
       }
-    ],
-    function(){
+    ]
+  , function () {
       callback(null, md)
     }
   )
 }
 
-function generate(vals, cb) {
-  cb(null, output)
-}
-
-function noop(){}
+function noop() {}
 
 module.exports = qaReport
