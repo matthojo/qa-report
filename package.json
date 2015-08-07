@@ -1,0 +1,24 @@
+{
+  "name": "QA-generator",
+  "version": "1.0.0",
+  "description": "Generate a QA report",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "qa-report": "bin/qa-report"
+  },
+  "author": "Matthew Harrison-Jones <matt@matthojo.co.uk> (http://matthojo.co.uk/)",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^1.4.0",
+    "chalk": "^1.1.0",
+    "github": "^0.2.4",
+    "inquirer": "^0.9.0",
+    "lodash.find": "^3.2.1",
+    "lodash.result": "^3.1.2",
+    "optimist": "^0.6.1",
+    "request": "^2.59.0"
+  }
+}

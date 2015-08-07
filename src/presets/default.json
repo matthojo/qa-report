@@ -1,0 +1,44 @@
+{
+  "answers": [
+    {
+      "title": "Checked",
+      "value": ":white_check_mark:"
+    },
+    {
+      "title": "Failed",
+      "value": ":x:"
+    },
+    {
+      "title": "Unable to check",
+      "value": ":question:"
+    },
+    {
+      "title": "Possible concern but agreed acceptable",
+      "value": ":heavy_exclamation_mark:"
+    }
+  ],
+  "questionSets": [
+    {
+      "title": "General",
+      "questions": [
+        "Standards are met",
+        "Sound approach has been taken",
+        "There is automated and/or proof of testing",
+        "Functionality is met",
+        "Any assumptions you have made are sound",
+        "Maintainability has been considered",
+        "Scalability has been considered",
+        "Risk of regression has been considered",
+        "Does the feature work with: small, big, and null data",
+        "All automated testing still passes"
+      ]
+    },
+    {
+      "title" : "Feature Specific",
+      "questions": [
+        "Seen working on developers machine",
+        "Check with online feed validator"
+      ]
+    }
+  ]
+}

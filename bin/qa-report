@@ -1,0 +1,35 @@
+#! /usr/bin/env node
+
+var optimist = require('optimist'),
+    qaReport = require('../'),
+    fs = require('fs')
+
+var argv = optimist
+  .alias('h', 'help')
+  .describe('h', 'Displays instructions.')
+
+  .alias('o', 'output')
+  .describe('o', 'Output path of the template. Defaults to stdout.')
+
+  .alias('i', 'id')
+  .describe('i', 'The GitHub ID for the Pull Request (this will automatically comment on the PR thread).')
+
+  .alias('p', 'preset')
+  .describe('p', 'Load in a different config of set questions.')
+
+  .argv
+
+if (argv.help) {
+  optimist.showHelp()
+  return process.exit(1)
+}
+
+handle()
+
+function handle() {
+  qaReport(argv, function(err, md) {
+    if (err) throw err
+    if (argv.output) return fs.writeFileSync(argv.output, md)
+    console.log(md)
+  })
+}
