@@ -1,13 +1,20 @@
 {
-  "name": "QA-generator",
+  "name": "qa-report",
   "version": "1.0.0",
   "description": "Generate a QA report",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:clocklimited/qa-report.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "preferGlobal": true,
   "bin": {
     "qa-report": "bin/qa-report"
+  },
+  "publishConfig": {
+    "registry": "http://npm.clockte.ch"
   },
   "author": "Matthew Harrison-Jones <matt@matthojo.co.uk> (http://matthojo.co.uk/)",
   "license": "MIT",
