@@ -66,21 +66,18 @@ function qaReport (opts, callback) {
             }
           )
         }
-      , function () {
-          done()
-        })
+      , done)
       }
     , function (done) {
         console.log(chalk.magenta('\nAdditional Notes\n' + '==========='))
         md += '\n\n## Additional Notes\n\n'
         inquirer.prompt([
-            {
-              type: 'input'
+            { type: 'input'
             , name: 'notes'
             , message: 'Additional Notes:'
             }
           ]
-          ,   function ( completed ) {
+          ,   function (completed) {
             // console.log('Answers: ', JSON.stringify(completed, null, "  ") );
             md += completed.notes
             done()
