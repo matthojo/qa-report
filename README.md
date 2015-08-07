@@ -23,7 +23,7 @@ Using these options together will output the markdown into a GitHub comment on t
 
 `qa-report -i <GitHub issue ID> -r <owner>/<repoName>`
 
-You will need to have a config file at ~/.qa-report.json for this to work, containing a GitHub Access Token
+You will need to have a config file at `~/.qa-report.json` for this to work, containing a GitHub Access Token
 and the username to post for. It should look something like:
 
 ```json
@@ -33,7 +33,7 @@ and the username to post for. It should look something like:
 }
 ```
 
-You can create a GitHub access tokens [here](https://github.com/settings/tokens).
+You can create a GitHub access token [here](https://github.com/settings/tokens).
 
 ## Templates
 
