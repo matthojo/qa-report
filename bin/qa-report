@@ -39,10 +39,10 @@ function handle() {
       postToPR(argv.id, argv.repo, md, function (error) {
         if (error) {
           console.log('\n' + chalk.red(error) + '\n')
+          console.log(md)
         } else {
           console.log(chalk.green('\nPosted to https://github.com/' + argv.repo + '/issues/' + argv.id + '\n'))
         }
-        console.log(md)
       })
     } else {
       console.log(md)
