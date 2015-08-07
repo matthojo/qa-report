@@ -2,7 +2,9 @@
 
 var optimist = require('optimist')
   , qaReport = require('../')
+  , postToPR = require('../src/post-to-pr')
   , fs = require('fs')
+  , chalk = require('chalk')
 
 var argv = optimist
   .alias('h', 'help')
@@ -13,6 +15,9 @@ var argv = optimist
 
   .alias('i', 'id')
   .describe('i', 'The GitHub ID for the Pull Request (this will automatically comment on the PR thread).')
+
+  .alias('r', 'repo')
+  .describe('r', 'The GitHub repo of the Pull Request to comment on. Specified like <owner>/<repoName>.')
 
   .alias('p', 'preset')
   .describe('p', 'Load in a different config of set questions.')
@@ -30,6 +35,17 @@ function handle() {
   qaReport(argv, function(err, md) {
     if (err) throw err
     if (argv.output) return fs.writeFileSync(argv.output, md)
-    console.log(md)
+    if (argv.id && argv.repo) {
+      postToPR(argv.id, argv.repo, md, function (error) {
+        if (error) {
+          console.log('\n' + chalk.red(error) + '\n')
+        } else {
+          console.log(chalk.green('\nPosted to https://github.com/' + argv.repo + '/issues/' + argv.id + '\n'))
+        }
+        console.log(md)
+      })
+    } else {
+      console.log(md)
+    }
   })
 }

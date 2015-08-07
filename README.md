@@ -19,10 +19,21 @@ Choose a preset to run (this can be a path to a preset `.json` file):
 
 `qa-report -p <preset name|path>`
 
-This will output the markdown into a GitHub comment on the specified issue/PR ID:
+Using these options together will output the markdown into a GitHub comment on the specified issue:
 
-`qa-report -i <GitHub issue ID>`
+`qa-report -i <GitHub issue ID> -r <owner>/<repoName>`
 
+You will need to have a config file at ~/.qa-report.json for this to work, containing a GitHub Access Token
+and the username to post for. It should look something like:
+
+```json
+{
+  "token": "thisismytoken",
+  "user": "benjaminparnell"
+}
+```
+
+You can create a GitHub access tokens [here](https://github.com/settings/tokens).
 
 ## Templates
 
