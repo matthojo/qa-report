@@ -1,5 +1,9 @@
 # QA Report Generator
 
+## Install
+
+`npm install -g qa-report`
+
 ## Usage
 
 Basic usage:
