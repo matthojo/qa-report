@@ -1,5 +1,7 @@
 # QA Report Generator
 
+![](https://cloud.githubusercontent.com/assets/367517/9138162/0ba5f124-3d1a-11e5-9f52-377b9029ed8e.gif)
+
 ## Install
 
 `npm install -g qa-report`
