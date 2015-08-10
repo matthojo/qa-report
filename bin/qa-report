@@ -36,12 +36,12 @@ function handle() {
     if (err) throw err
     if (argv.output) return fs.writeFileSync(argv.output, md)
     if (argv.id && argv.repo) {
-      postToPR(argv.id, argv.repo, md, function (error) {
+      postToPR(argv.id, argv.repo, md, function (error, repo) {
         if (error) {
           console.log('\n' + chalk.red(error) + '\n')
           console.log(md)
         } else {
-          console.log(chalk.green('\nPosted to https://github.com/' + argv.repo + '/issues/' + argv.id + '\n'))
+          console.log(chalk.green('\nPosted to https://github.com/' + repo + '/issues/' + argv.id + '\n'))
         }
       })
     } else {
