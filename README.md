@@ -21,7 +21,7 @@ Choose a preset to run (this can be a path to a preset `.json` file):
 
 Using these options together will output the markdown into a GitHub comment on the specified issue:
 
-`qa-report -i <GitHub issue ID> -r <owner>/<repoName>`
+`qa-report -i <GitHub PR/Issue ID> -r <owner>/<repoName>`
 
 You will need to have a config file at `~/.qa-report.json` for this to work, containing a GitHub Access Token
 and the username to post for. It should look something like:
@@ -47,6 +47,8 @@ External preset templates can be used by using a path in `-p` parameter, for exa
 
 ## Output
 
-By default the output is piped out into the console for copying into GitHub.
+By default the output is piped out into the console for manual copying into GitHub.
 
 An output file path can be specified using `-o`, for example; `qa-report -o ~/Desktop/qa.md`.
+
+Alternatively you can output directly to a GitHub comment with `-i` being the PR / issue number and `-r` for the repository. Example; `qa-report -i 1 -r clocklimited/qa-report`.

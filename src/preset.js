@@ -13,7 +13,7 @@ function init () {
   var options = {}
   try {
     if (fs.lstatSync(presetName).isFile()) {
-      if (presetName.substr((~-presetName.lastIndexOf(".") >>> 0) + 2) === 'json') {
+      if (presetName.substr((~-presetName.lastIndexOf('.') >>> 0) + 2) === 'json') {
         options = JSON.parse(fs.readFileSync(presetName, 'utf8'))
       } else {
         console.log('Preset path must be a .json file.')

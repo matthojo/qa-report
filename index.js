@@ -1,9 +1,7 @@
 var inquirer = require('inquirer')
-  , fs = require('fs')
   , async = require('async')
   , chalk = require('chalk')
   , find = require('lodash.find')
-  , result = require('lodash.result')
   , preset = require('./src/preset')
 
 function qaReport (opts, callback) {
@@ -36,7 +34,6 @@ function qaReport (opts, callback) {
           }
         }
 
-        var questionSetsLength = questionSets.length
         async.eachSeries(questionSets, function (value, next) {
           // Set title in markdown
           md += '\n\n## ' + value.title + '\n\n'
