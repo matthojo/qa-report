@@ -15,6 +15,10 @@
     {
       "title": "Possible concern but agreed acceptable",
       "value": ":heavy_exclamation_mark:"
+    },
+    {
+      "title": "Not applicable",
+      "value": ":heavy_minus_sign:"
     }
   ],
   "questionSets": [
