@@ -48,4 +48,4 @@ By default the output is piped out into the console for manual copying into GitH
 
 An output file path can be specified using `-o`, for example; `qa-report -o ~/Desktop/qa.md`.
 
-Alternatively you can output directly to a GitHub comment with `-i` being the PR / issue number and `-r` for the repository. Example; `qa-report -i 1 -r matthojo/qa-report`.
+Alternatively you can output directly to a GitHub comment with `-i` being the PR number and `-r` for the repository. Example; `qa-report -i 1 -r matthojo/qa-report`.
