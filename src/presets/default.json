@@ -29,12 +29,13 @@
         "Sound approach has been taken",
         "There is automated and/or proof of testing",
         "Functionality is met",
-        "Any assumptions you have made are sound",
+        "Any assumptions made are sound",
         "Maintainability has been considered",
         "Scalability has been considered",
         "Risk of regression has been considered",
-        "Does the feature work with: small, big, and null data",
-        "All automated testing still passes"
+        "Data migration has been considered",
+        "Feature works with: small, big, and null data",
+        "All automated testing still pass"
       ]
     },
     {
