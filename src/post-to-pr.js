@@ -12,23 +12,30 @@ const configPath = osHomedir() + '/.qa-report.json';
  * @param {*} body
  * @param {*} callback
  *
- * @return {Function}
+ * @return {Promise<string>} - Repo owner/name
  */
-function postToPR(id, repo, body, callback) {
-  var config;
+function postToPR(id, repo, body) {
+  return new Promise((resolve, reject) => {
+    let config;
 
-  try {
-    config = JSON.parse(fs.readFileSync(configPath));
-  } catch (e) {
-    return callback(new Error('Can\'t read ' + configPath + '. Ensure it is present and is valid JSON.'));
-  }
+    try {
+      config = JSON.parse(fs.readFileSync(configPath));
+    } catch (e) {
+      return callback(new Error('Can\'t read ' + configPath + '. Ensure it is present and is valid JSON.'));
+    }
 
-  getRepoAndOwner(repo, (error, repoName, owner) => {
-    if (error) return callback(error);
-    ghIssues.createComment(config, owner, repoName, id, body, (error) => {
-      if (error) return callback(error);
-      callback(null, owner + '/' + repoName);
-    });
+    getRepoAndOwner(repo)
+      .then(({repoName, owner}) => {
+        ghIssues.createComment(config, owner, repoName, id, body, (error) => {
+          if (error) {
+            return reject(error);
+          }
+          resolve(owner + '/' + repoName);
+        });
+      })
+      .catch((err) => {
+        return reject(error);
+      });
   });
 }
 

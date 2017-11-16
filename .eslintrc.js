@@ -23,6 +23,7 @@ module.exports = {
     'indent': ['error', 2, { 'SwitchCase': 1 }],
     'curly': ['error'],
     'arrow-parens': ['error', 'always'],
-    'linebreak-style': ['warn', 'unix']
+    'linebreak-style': ['warn', 'unix'],
+    'semi': ['error', 'always']
   }
 }

@@ -1,6 +1,6 @@
 const fs = require('fs');
-const presetName = '';
-const presetOptions = {};
+let presetName = '';
+let presetOptions = {};
 
 /**
  * Define preset file
@@ -21,13 +21,13 @@ function preset(name) {
  * @return {Object}
  */
 function init() {
-  var options = {};
+  let options = {};
   try {
     if (fs.lstatSync(presetName).isFile()) {
       if (presetName.substr((~-presetName.lastIndexOf('.') >>> 0) + 2) === 'json') {
         options = JSON.parse(fs.readFileSync(presetName, 'utf8'));
       } else {
-        console.log('Preset path must be a .json file.');
+        console.error('Preset path must be a .json file.');
         return process.exit(1);
       }
     }
@@ -35,7 +35,7 @@ function init() {
     try {
       options = JSON.parse(fs.readFileSync(__dirname + '/presets/' + presetName + '.json', 'utf8'));
     } catch (e) {
-      console.log('This preset does not exist.');
+      console.error('This preset does not exist.');
       return process.exit(1);
     }
   }
