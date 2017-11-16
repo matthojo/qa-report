@@ -26,11 +26,8 @@ Using these options together will output the markdown into a GitHub comment on t
 You will need to have a config file at `~/.qa-report.json` for this to work, containing a GitHub Access Token
 and the username to post for. It should look something like:
 
-```json
-{
-  "token": "thisismytoken",
-  "user": "benjaminparnell"
-}
+```text
+thisismytoken
 ```
 
 You can create a GitHub access token [here](https://github.com/settings/tokens).
@@ -51,4 +48,4 @@ By default the output is piped out into the console for manual copying into GitH
 
 An output file path can be specified using `-o`, for example; `qa-report -o ~/Desktop/qa.md`.
 
-Alternatively you can output directly to a GitHub comment with `-i` being the PR / issue number and `-r` for the repository. Example; `qa-report -i 1 -r clocklimited/qa-report`.
+Alternatively you can output directly to a GitHub comment with `-i` being the PR / issue number and `-r` for the repository. Example; `qa-report -i 1 -r matthojo/qa-report`.
