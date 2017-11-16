@@ -76,7 +76,6 @@ function qaReport(opts) {
         },
         (done) => {
           console.log(chalk.magenta('\nAdditional Notes\n' + '==========='));
-          md += '\n\n## Additional Notes\n\n';
           inquirer.prompt([
             {
               type: 'input',
@@ -86,7 +85,10 @@ function qaReport(opts) {
           ],
           (completed) => {
             // console.log('Answers: ', JSON.stringify(completed, null, "  ") );
-            md += completed.notes;
+            if (completed.notes) {
+              md += '\n\n## Additional Notes\n\n';
+              md += completed.notes;
+            }
             done();
           }
           );
