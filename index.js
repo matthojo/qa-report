@@ -16,6 +16,7 @@ function qaReport(opts) {
 
     let presets = '';
     let md = '# QA';
+    let approval = null;
 
     async.series(
       [
@@ -89,10 +90,41 @@ function qaReport(opts) {
             done();
           }
           );
+        },
+        (done) => {
+          console.log(chalk.magenta('\nReview Status\n' + '==========='));
+          inquirer.prompt([
+            {
+              type: 'list',
+              name: 'approval',
+              message: 'Status:',
+              choices: [
+                {
+                  name: 'Comment only',
+                  value: 'COMMENT'
+                },
+                new inquirer.Separator(),
+                {
+                  name: 'Approved',
+                  value: 'APPROVE'
+                },
+                {
+                  name: 'Request Changes',
+                  value: 'REQUEST_CHANGES'
+                }
+              ]
+            }
+          ],
+          (completed) => {
+            // console.log('Answers: ', JSON.stringify(completed, null, "  ") );
+            approval = completed.approval;
+            done();
+          }
+          );
         }
       ]
       , () => {
-        resolve(md);
+        resolve({approval, md});
       }
     );
   });
