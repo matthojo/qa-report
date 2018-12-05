@@ -1,12 +1,12 @@
 #! /usr/bin/env node
 
-var optimist = require('optimist')
-  , qaReport = require('../')
-  , postToPR = require('../src/post-to-pr')
-  , fs = require('fs')
-  , chalk = require('chalk')
+const optimist = require('optimist');
+const qaReport = require('../');
+const postToPR = require('../src/post-to-pr');
+const fs = require('fs');
+const chalk = require('chalk');
 
-var argv = optimist
+let argv = optimist
   .alias('h', 'help')
   .describe('h', 'Displays instructions.')
 
@@ -22,30 +22,39 @@ var argv = optimist
   .alias('p', 'preset')
   .describe('p', 'Load in a different config of set questions.')
 
-  .argv
+  .argv;
 
 if (argv.help) {
-  optimist.showHelp()
-  return process.exit(1)
+  optimist.showHelp();
+  process.exit(1);
 }
 
-handle()
+init();
 
-function handle() {
-  qaReport(argv, function(err, md) {
-    if (err) throw err
-    if (argv.output) return fs.writeFileSync(argv.output, md)
-    if (argv.id && argv.repo) {
-      postToPR(argv.id, argv.repo, md, function (error) {
-        if (error) {
-          console.log('\n' + chalk.red(error) + '\n')
-          console.log(md)
-        } else {
-          console.log(chalk.green('\nPosted to https://github.com/' + argv.repo + '/issues/' + argv.id + '\n'))
-        }
-      })
-    } else {
-      console.log(md)
-    }
-  })
+/**
+ * Initialise everything
+ */
+function init() {
+  qaReport(argv)
+    .then(({approval, md}) => {
+      if (argv.output) return fs.writeFileSync(argv.output, md);
+      if (argv.id && argv.repo) {
+        postToPR(argv.id, argv.repo, approval, md)
+          .then((repo) => {
+            console.log(chalk.green('\nPosted to https://github.com/' + repo + '/issues/' + argv.id + '\n'));
+            if (approval === 'REQUEST_CHANGES') {
+              console.log(chalk.orange('\nYou have request changes, please add detailed line-by-line feedback directly in the Github Pull Request.'));
+            }
+          })
+          .catch((err) => {
+            console.error('\n' + chalk.red(error) + '\n');
+            console.log(md);
+          });
+      } else {
+        console.log(md);
+      }
+    })
+    .catch((err) => {
+      throw err;
+    });
 }

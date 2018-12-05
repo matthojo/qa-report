@@ -4,17 +4,15 @@
   "description": "Generate a QA report",
   "repository": {
     "type": "git",
-    "url": "git@github.com:clocklimited/qa-report.git"
+    "url": "https://github.com/matthojo/qa-report.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --ext .js ."
   },
   "preferGlobal": true,
   "bin": {
     "qa-report": "bin/qa-report"
-  },
-  "publishConfig": {
-    "registry": "http://npm.clockte.ch"
   },
   "author": "Matthew Harrison-Jones <matt@matthojo.co.uk> (http://matthojo.co.uk/)",
   "license": "MIT",
@@ -22,9 +20,15 @@
     "async": "^1.4.0",
     "chalk": "^1.1.0",
     "ghissues": "^1.1.1",
+    "github-url-from-git": "^1.4.0",
     "inquirer": "^0.9.0",
     "lodash.find": "^3.2.1",
+    "octonode": "^0.9.1",
     "optimist": "^0.6.1",
     "os-homedir": "^1.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.11.0",
+    "eslint-config-google": "^0.9.1"
   }
 }
