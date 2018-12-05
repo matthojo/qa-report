@@ -1,12 +1,12 @@
-# QA Report Generator
+# QA Report Generator
 
 ![](https://cloud.githubusercontent.com/assets/367517/9138162/0ba5f124-3d1a-11e5-9f52-377b9029ed8e.gif)
 
-## Install
+## Install
 
 `npm install -g qa-report`
 
-## Usage
+## Usage
 
 Basic usage:
 `qa-report`
@@ -34,15 +34,13 @@ You can create a GitHub access token [here](https://github.com/settings/tokens).
 
 ## Templates
 
-The 'default' template is based on [https://github.com/clocklimited/wiki/blob/master/guides/QA-Template.md](https://github.com/clocklimited/wiki/blob/master/guides/QA-Template.md).
-
-You can create custom templates based on the default located at [`src/presets/default.json`](https://github.com/clocklimited/qa-report/blob/master/src/presets/default.json).
+You can create custom templates based on the default located at [`src/presets/default.json`](https://github.com/matthojo/qa-report/blob/master/src/presets/default.json).
 
 Additional more permanent templates can be added into `src/presets/` to be referenced by their name, for example `qa-report -p frontend`. The file would be called `frontend.json`.
 
 External preset templates can be used by using a path in `-p` parameter, for example; `qa-report -p ~/Desktop/preset.json`.
 
-## Output
+## Output
 
 By default the output is piped out into the console for manual copying into GitHub.
 
