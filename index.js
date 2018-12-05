@@ -57,7 +57,9 @@ function qaReport (opts, callback) {
               // console.log('Answers: ', JSON.stringify(completed, null, "  ") );
               for (var item in completed) {
                 var answerValue = find(answers, { title: completed[item] })
-                md += answerValue.value + ' ' + questionSet[parseInt(item)] + '\n'
+                if (!answerValue.hide) {
+                  md += answerValue.value + ' ' + questionSet[parseInt(item)] + '\n'
+                }
               }
               next()
             }

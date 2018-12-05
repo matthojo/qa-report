@@ -6,19 +6,16 @@
     },
     {
       "title": "Failed",
-      "value": ":x:"
+      "value": ":heavy_minus_sign:"
     },
     {
       "title": "Unable to check",
-      "value": ":question:"
-    },
-    {
-      "title": "Possible concern but agreed acceptable",
-      "value": ":heavy_exclamation_mark:"
+      "value": ":grey_question:"
     },
     {
       "title": "Not applicable",
-      "value": ":heavy_minus_sign:"
+      "value": ":heavy_minus_sign:",
+      "hide": true
     }
   ],
   "questionSets": [
@@ -29,7 +26,7 @@
         "Sound approach has been taken",
         "There is automated and/or proof of testing",
         "Functionality is met",
-        "Any assumptions you have made are sound",
+        "Any assumptions made are sound",
         "Maintainability has been considered",
         "Scalability has been considered",
         "Risk of regression has been considered",
@@ -40,7 +37,7 @@
     {
       "title" : "Feature Specific",
       "questions": [
-        "Seen working on developers machine"
+        "Seen working on staging environment"
       ]
     }
   ]
